@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 45 20% 97%;
+    --foreground: 215 28% 17%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 28% 17%;
+    --muted: 40 15% 93%;
+    --muted-foreground: 215 12% 45%;
+    --accent: 43 38% 58%;
+    --accent-foreground: 215 47% 23%;
+    --border: 40 12% 88%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 215 35% 10%;
+    --foreground: 40 15% 95%;
+    --card: 215 30% 14%;
+    --card-foreground: 40 15% 95%;
+    --muted: 215 25% 18%;
+    --muted-foreground: 215 12% 65%;
+    --accent: 43 38% 58%;
+    --accent-foreground: 40 15% 95%;
+    --border: 215 20% 22%;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
