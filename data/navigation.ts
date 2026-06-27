@@ -9,7 +9,7 @@ export const navItems: NavItem[] = [
   { id: "house-guide", label: "House Guide" },
   { id: "explore", label: "Explore" },
   { id: "food-drink", label: "Food & Drink" },
-  { id: "map", label: "Map" },
+  { id: "amenities", label: "Amenities" },
   { id: "faq", label: "FAQ" },
   { id: "weather", label: "Weather" },
   { id: "emergency", label: "Emergency" },

@@ -5,7 +5,6 @@ import {
   Flame,
   Microwave,
   Monitor,
-  Recycle,
   Refrigerator,
   ShowerHead,
   Sofa,
@@ -15,6 +14,7 @@ import {
   UtensilsCrossed,
   WashingMachine,
   Waves,
+  Wind,
 } from "lucide-react";
 
 export type HouseGuideItem = {
@@ -23,6 +23,7 @@ export type HouseGuideItem = {
   icon: LucideIcon;
   content: string;
   tips?: string[];
+  links?: { label: string; href: string }[];
 };
 
 export type HouseGuideGroup = {
@@ -41,7 +42,7 @@ export const houseGuideGroups: HouseGuideGroup[] = [
         title: "Coffee machine",
         icon: Coffee,
         content:
-          "Nespresso machine on the counter. Pods are provided for your arrival — additional pods are in the cupboard above.",
+          "Tassimo machine on the counter. Coffee pods are supplied at check-in — you can buy more locally at Tesco or other shops in Ilfracombe and Barnstaple.",
         tips: ["Fill the water tank before first use", "Empty the pod drawer when full"],
       },
       {
@@ -62,7 +63,7 @@ export const houseGuideGroups: HouseGuideGroup[] = [
         id: "microwave",
         title: "Microwave",
         icon: Microwave,
-        content: "Combination microwave above the oven. Quick-start guide is on the inside of the door.",
+        content: "Combination microwave above the oven.",
       },
       {
         id: "dishwasher",
@@ -76,7 +77,7 @@ export const houseGuideGroups: HouseGuideGroup[] = [
         title: "Fridge & freezer",
         icon: Refrigerator,
         content:
-          "Fridge is set to 4°C on arrival. Freezer compartment is in the top section. Please leave doors closed when not in use.",
+          "60/40 fridge-freezer split. Fridge is set to 4°C on arrival. Please leave doors closed when not in use.",
       },
     ],
   },
@@ -91,6 +92,13 @@ export const houseGuideGroups: HouseGuideGroup[] = [
         content:
           "Located in the utility cupboard. Detergent pods are provided. Select Cotton 40°C for most loads. Leave the door ajar after use to prevent odours.",
       },
+      {
+        id: "dryer",
+        title: "Dryer",
+        icon: Wind,
+        content:
+          "Tumble dryer in the utility cupboard, next to the washing machine. Check the lint filter before each use and empty after drying.",
+      },
     ],
   },
   {
@@ -102,15 +110,14 @@ export const houseGuideGroups: HouseGuideGroup[] = [
         title: "Heating",
         icon: Thermometer,
         content:
-          "Central heating is controlled via the wall thermostat in the hallway. Recommended setting: 20°C. Radiator valves can be adjusted in individual rooms.",
-        tips: ["Please do not cover radiators with towels or clothing"],
+          "Underfloor heating, centrally controlled — no adjustment necessary or possible. The system keeps the house at a constant 21°C unless it is warmer outside.",
       },
       {
         id: "hot-water",
         title: "Hot water",
         icon: ShowerHead,
         content:
-          "Hot water is on a timer linked to the boiler. If supply runs low, wait 30 minutes for the tank to reheat. Emergency boost instructions are on the boiler panel.",
+          "Hot water is centrally controlled and will continually supply hot water. No boost is available or required. If hot water runs out, wait 15 minutes and the supply will replenish.",
       },
     ],
   },
@@ -123,7 +130,7 @@ export const houseGuideGroups: HouseGuideGroup[] = [
         title: "Televisions",
         icon: Tv,
         content:
-          "Smart TVs in the living room and main bedroom. Use the remote to power on — allow a moment for the system to connect to WiFi.",
+          "Smart TVs in all bedrooms and the living room. Use the remote to power on — allow a moment for the system to connect to WiFi.",
       },
       {
         id: "streaming",
@@ -143,15 +150,15 @@ export const houseGuideGroups: HouseGuideGroup[] = [
         title: "Outdoor furniture",
         icon: Armchair,
         content:
-          "Teak dining set and lounge chairs on the terrace. Cushions are stored in the outdoor box — please return them if rain is forecast.",
+          "Teak dining set and deck chairs on the deck. Cushions are stored in the outdoor box — please return them if rain is forecast.",
       },
       {
         id: "bbq",
         title: "BBQ",
         icon: Flame,
         content:
-          "Charcoal BBQ on the terrace. Please clean after use and dispose of cooled ash in the general waste bin. Do not leave unattended while lit.",
-        tips: ["Never use the BBQ indoors or on the decking edge"],
+          "Charcoal BBQ on the deck. Please clean after use and dispose of cooled ash in the general waste bin. Do not leave unattended while lit.",
+        tips: ["Never use the BBQ indoors"],
       },
     ],
   },
@@ -161,27 +168,33 @@ export const houseGuideGroups: HouseGuideGroup[] = [
     items: [
       {
         id: "waste",
-        title: "Waste & recycling",
-        icon: Recycle,
+        title: "Waste",
+        icon: Trash2,
         content:
-          "Recycling bins are in the utility area — please sort glass, plastic/tins, and paper. General waste goes in the black bin. Collection day: Thursday.",
-        tips: ["Bins are stored in the side passage — pull out on Wednesday evening"],
+          "General waste goes in the black bin outside, stored behind the end of the house. Black bin collection is every second Friday — please check your dates before putting the bin out.",
+        tips: ["Put the black bin out by 6:00 am on collection morning"],
+        links: [
+          {
+            label: "North Devon Council bin collection calendar",
+            href: "https://my.northdevon.gov.uk/service/WasteRecyclingCollectionCalendar",
+          },
+        ],
       },
       {
         id: "house-rules",
         title: "House rules",
         icon: Sofa,
         content:
-          "No smoking inside. Quiet hours after 10 pm. Maximum occupancy as per booking. Please treat the property with care — it is a home, not just a rental.",
+          "No smoking anywhere on the property. No pets. Quiet hours after 10 pm. Maximum occupancy as per booking. Please treat the property with care — it is a home, not just a rental.",
       },
       {
         id: "departure",
         title: "Departure checklist",
         icon: Trash2,
         content:
-          "Check-out by 10:00 am. Strip used beds, start the dishwasher, take rubbish to bins, close windows, and lock all doors. Leave keys as instructed in your arrival email.",
+          "Check-out by 10:00 am. Close windows and lock all doors. Leave keys as instructed in your arrival email.",
         tips: [
-          "Turn off all lights and heating",
+          "Turn off all unnecessary lights",
           "Sign out of streaming accounts",
           "Report any breakages to guest support",
         ],

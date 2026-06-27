@@ -30,7 +30,23 @@ export const FaqSection = () => {
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="leading-relaxed">
-                  {faq.answer}
+                  <p>{faq.answer}</p>
+                  {faq.links?.length ? (
+                    <ul className="mt-3 space-y-2">
+                      {faq.links.map((link) => (
+                        <li key={link.href}>
+                          <a
+                            href={link.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-medium text-navy underline-offset-2 hover:underline dark:text-gold"
+                          >
+                            {link.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
                 </AccordionContent>
               </AccordionItem>
             ))}

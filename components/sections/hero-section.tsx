@@ -28,7 +28,7 @@ export const HeroSection = () => {
       />
       <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/40 to-navy/20" />
 
-      <div className="relative mx-auto flex min-h-[85vh] max-w-6xl flex-col justify-end px-4 pb-16 pt-32 sm:px-6 sm:pb-20">
+      <div className="relative z-10 mx-auto flex min-h-[85vh] max-w-6xl flex-col justify-end px-4 pb-16 pt-32 sm:px-6 sm:pb-20">
         <FadeIn>
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-gold">
             Ilfracombe · North Devon

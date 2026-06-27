@@ -38,8 +38,8 @@ export const FoodDrinkSection = () => {
             return (
               <TabsContent key={cat.id} value={cat.id}>
                 <div className="grid gap-6 md:grid-cols-2">
-                  {items.map((item, index) => (
-                    <FadeIn key={item.id} delay={index * 0.05}>
+                  {items.map((item) => (
+                    <FadeIn key={item.id} immediate>
                       <Card className="overflow-hidden border-border/80 bg-card">
                         <PlaceholderImage
                           src={item.image}

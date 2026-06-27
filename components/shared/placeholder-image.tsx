@@ -22,23 +22,6 @@ export const PlaceholderImage = ({
   fill = true,
   sizes = "100vw",
 }: PlaceholderImageProps) => {
-  if (src?.startsWith("/images/")) {
-    return (
-      <div className={cn("relative overflow-hidden bg-sand-light", className)}>
-        <div
-          className="absolute inset-0 bg-gradient-to-br from-sand via-sand-light to-navy/10"
-          aria-hidden="true"
-        />
-        {label ? (
-          <span className="absolute bottom-4 left-4 z-10 rounded-full bg-white/80 px-3 py-1 text-xs font-medium text-navy backdrop-blur">
-            {label}
-          </span>
-        ) : null}
-        <span className="sr-only">{alt}</span>
-      </div>
-    );
-  }
-
   if (!src) {
     return (
       <div
@@ -59,7 +42,7 @@ export const PlaceholderImage = ({
   }
 
   return (
-    <div className={cn("relative overflow-hidden", className)}>
+    <div className={cn("relative overflow-hidden bg-sand-light", className)}>
       <Image
         src={src}
         alt={alt}
@@ -68,6 +51,11 @@ export const PlaceholderImage = ({
         sizes={sizes}
         className="object-cover"
       />
+      {label ? (
+        <span className="absolute bottom-4 left-4 z-10 rounded-full bg-white/80 px-3 py-1 text-xs font-medium text-navy backdrop-blur">
+          {label}
+        </span>
+      ) : null}
     </div>
   );
 };

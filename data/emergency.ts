@@ -25,10 +25,12 @@ export const emergencyContacts: EmergencyContact[] = [
   {
     id: "hospital",
     name: "North Devon District Hospital",
-    description: "Nearest A&E — approximately 25 minutes by car.",
+    description:
+      "Nearest hospital with a 24/7 Emergency Department (A&E). For all emergencies, call 999 — ambulance staff will advise where to go. The switchboard below is for general enquiries only, not medical advice.",
     phone: "01271 322577",
     address: "Raleigh Park, Barnstaple EX31 4JB",
-    mapsUrl: "https://maps.google.com/?q=North+Devon+District+Hospital",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=North+Devon+District+Hospital+EX31+4JB",
   },
   {
     id: "vet",
@@ -67,12 +69,38 @@ export const emergencyContacts: EmergencyContact[] = [
 export const quickEmergency = {
   hospital: {
     name: "North Devon District Hospital",
-    distance: "25 min drive",
-    phone: "01271 322577",
+    distance: "Approx. 25 min drive",
+    emergencyDepartment: "24/7 Emergency Department (A&E)",
+    emergencyAdvice: "For all emergencies, call 999.",
+    switchboardPhone: "01271 322577",
+    switchboardNote:
+      "Main switchboard (24/7). Ask for the Emergency Department — not for medical advice by phone.",
+    address: "Raleigh Park, Barnstaple EX31 4JB",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=North+Devon+District+Hospital+EX31+4JB",
   },
   pharmacy: {
-    name: "Boots Pharmacy, Ilfracombe",
-    distance: "0.7 miles",
-    phone: "01271 862001",
+    name: "Superdrug Pharmacy",
+    address: "25 High Street, Ilfracombe EX34 9DA",
+    distance: "Approx. 0.7 miles",
+    phone: "01271 862122",
+    openingHours: "Mon–Fri 8:30 am–5:30 pm, Sat 9:00 am–5:30 pm (closed Sun)",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Superdrug+Pharmacy+Ilfracombe+EX34+9DA",
+  },
+  pharmacyOutOfHours: {
+    headline: "No 24-hour pharmacy in Ilfracombe",
+    advice:
+      "For urgent medication when local pharmacies are closed, call NHS 111 — available 24/7. They can arrange an emergency prescription or direct you to the on-call duty pharmacy.",
+    nhs111Phone: "111",
+    lateOpening: {
+      name: "Tesco Pharmacy, Barnstaple",
+      distance: "Approx. 20 min drive",
+      openingHours: "Until 9:00 pm Mon–Sat, 10:00 am–4:00 pm Sun",
+      note: "Nearest late opening — phone ahead to confirm availability.",
+      phone: "01271 308447",
+      mapsUrl:
+        "https://www.google.com/maps/search/?api=1&query=Tesco+Pharmacy+Barnstaple+Retail+Park+EX31+2AS",
+    },
   },
 };

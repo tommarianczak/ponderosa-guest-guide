@@ -1,12 +1,10 @@
 "use client";
 
-import { Check, ExternalLink, Heart, Star } from "lucide-react";
+import { BookOpen, Check, Star } from "lucide-react";
 import { useState } from "react";
 import { beforeYouLeave, departureChecklist } from "@/data/departure";
-import { property } from "@/data/property";
 import { FadeIn } from "@/components/shared/fade-in";
 import { SectionHeading } from "@/components/shared/section-heading";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
@@ -91,61 +89,22 @@ export const BeforeYouLeaveSection = () => {
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                     {beforeYouLeave.reviewPrompt}
                   </p>
-                  <Button className="mt-4" variant="default" asChild>
-                    <a
-                      href={property.reviewUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                      Write a review
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
-            </FadeIn>
-
-            <FadeIn delay={0.1}>
-              <Card className="border-border/80 bg-card">
-                <CardContent className="p-6">
-                  <h3 className="font-serif text-xl text-navy dark:text-warm-white">
-                    Book directly next time
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    {beforeYouLeave.directBookingPrompt}
-                  </p>
-                  <Button className="mt-4" variant="outline" asChild>
-                    <a
-                      href={property.directBookingUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Direct booking
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
-            </FadeIn>
-
-            <FadeIn delay={0.15}>
-              <Card className="border-border/80 bg-card">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-2 text-gold">
-                    <Heart className="h-5 w-5" />
-                    <h3 className="font-serif text-xl text-navy dark:text-warm-white">
-                      Follow us
-                    </h3>
-                  </div>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    {beforeYouLeave.followPrompt}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {property.socialLinks.map((link) => (
-                      <Button key={link.label} variant="ghost" size="sm" asChild>
-                        <a href={link.href}>{link.label}</a>
-                      </Button>
-                    ))}
-                  </div>
+                  <ul className="mt-4 space-y-4 text-sm leading-relaxed text-muted-foreground">
+                    <li className="flex gap-3">
+                      <BookOpen
+                        className="mt-0.5 h-4 w-4 shrink-0 text-gold"
+                        aria-hidden="true"
+                      />
+                      <span>{beforeYouLeave.reviewGuestBook}</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <Star
+                        className="mt-0.5 h-4 w-4 shrink-0 text-gold"
+                        aria-hidden="true"
+                      />
+                      <span>{beforeYouLeave.reviewPlatform}</span>
+                    </li>
+                  </ul>
                 </CardContent>
               </Card>
             </FadeIn>

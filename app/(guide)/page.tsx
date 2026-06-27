@@ -6,7 +6,7 @@ import { FaqSection } from "@/components/sections/faq-section";
 import { FoodDrinkSection } from "@/components/sections/food-drink-section";
 import { HeroSection } from "@/components/sections/hero-section";
 import { HouseGuideSection } from "@/components/sections/house-guide-section";
-import { MapSection } from "@/components/sections/map-section";
+import { AmenitiesSection } from "@/components/sections/amenities-section";
 import { QuickInfoSection } from "@/components/sections/quick-info-section";
 import { WeatherSection } from "@/components/sections/weather-section";
 
@@ -19,7 +19,7 @@ export default function GuestGuidePage() {
       <HouseGuideSection />
       <ExploreSection />
       <FoodDrinkSection />
-      <MapSection />
+      <AmenitiesSection />
       <FaqSection />
       <WeatherSection />
       <EmergencySection />

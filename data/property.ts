@@ -15,7 +15,8 @@ export const property = {
   },
   checkIn: "From 4:00 pm",
   checkOut: "By 10:00 am",
-  parking: "Private driveway — space for two cars. Please park considerately and do not block access.",
+  parking:
+    "Private driveway with space for more than four cars, plus on-street parking nearby. Please park considerately.",
   wifi: {
     ssid: "Ponderosa Guest",
     password: "Ilfracombe",
@@ -26,12 +27,6 @@ export const property = {
   },
   heroImage: "/images/hero-coast.jpg",
   heroImageAlt: "North Devon coastline at golden hour",
-  directBookingUrl: "https://www.holidaycottages.co.uk",
-  socialLinks: [
-    { label: "Instagram", href: "#" },
-    { label: "Facebook", href: "#" },
-  ],
-  reviewUrl: "https://www.holidaycottages.co.uk",
 } as const;
 
 export type Property = typeof property;

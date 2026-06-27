@@ -1,3 +1,4 @@
+import { ExternalLink } from "lucide-react";
 import { exploreCards } from "@/data/explore";
 import { FadeIn } from "@/components/shared/fade-in";
 import { PlaceholderImage } from "@/components/shared/placeholder-image";
@@ -37,12 +38,20 @@ export const ExploreSection = () => {
                   </p>
                   {card.highlights?.length ? (
                     <ul className="mt-4 flex flex-wrap gap-2">
-                      {card.highlights.map((h) => (
-                        <li
-                          key={h}
-                          className="rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground"
-                        >
-                          {h}
+                      {card.highlights.map((highlight) => (
+                        <li key={highlight.href}>
+                          <a
+                            href={highlight.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1.5 text-xs font-medium text-navy transition-colors hover:bg-gold/20 hover:text-navy dark:text-warm-white dark:hover:text-gold"
+                          >
+                            {highlight.label}
+                            <ExternalLink
+                              className="h-3 w-3 opacity-50"
+                              aria-hidden="true"
+                            />
+                          </a>
                         </li>
                       ))}
                     </ul>

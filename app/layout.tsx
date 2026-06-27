@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
-import { SiteNav } from "@/components/layout/site-nav";
 import { ThemeProvider } from "@/components/theme-provider";
 import { property } from "@/data/property";
 import "./globals.css";
@@ -21,6 +20,16 @@ const sans = DM_Sans({
 export const metadata: Metadata = {
   title: `${property.name} — Guest Guide`,
   description: property.welcome,
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
   appleWebApp: {
     capable: true,
     title: property.name,
@@ -46,19 +55,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${serif.variable} ${sans.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <SiteNav />
-          <main>{children}</main>
-          <footer className="border-t border-border bg-muted/30 py-10">
-            <div className="mx-auto max-w-6xl px-4 text-center sm:px-6">
-              <p className="font-serif text-lg tracking-[0.15em] text-navy dark:text-warm-white">
-                {property.name.toUpperCase()}
-              </p>
-              <p className="mt-2 text-sm text-muted-foreground">
-                {property.address.line1}, {property.address.town}{" "}
-                {property.address.postcode}
-              </p>
-            </div>
-          </footer>
+          {children}
         </ThemeProvider>
       </body>
     </html>
