@@ -97,7 +97,7 @@ export const FoodDrinkSection = () => {
                                   rel="noopener noreferrer"
                                 >
                                   <ExternalLink className="h-3.5 w-3.5" />
-                                  Website
+                                  {item.websiteLabel ?? "Website"}
                                 </a>
                               </Button>
                             ) : null}
