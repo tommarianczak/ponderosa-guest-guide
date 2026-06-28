@@ -32,7 +32,7 @@ export const AboutSection = () => {
                     <PlaceholderImage
                       src={block.image}
                       alt={block.imageAlt}
-                      label={block.title}
+                      label={block.image ? block.title : `Photo coming soon · ${block.title}`}
                       className="aspect-[4/3] w-full rounded-2xl"
                     />
                   </div>
