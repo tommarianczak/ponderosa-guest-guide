@@ -5,6 +5,7 @@ export type NavItem = {
 
 export const navItems: NavItem[] = [
   { id: "quick-info", label: "Essentials" },
+  { id: "ev-charging", label: "EV Charging" },
   { id: "about", label: "About" },
   { id: "house-guide", label: "House Guide" },
   { id: "explore", label: "Explore" },

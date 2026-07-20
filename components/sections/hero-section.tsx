@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, MapPin, Wifi } from "lucide-react";
+import { BookOpen, MapPin, PlugZap, Wifi } from "lucide-react";
 import { property } from "@/data/property";
 import { FadeIn } from "@/components/shared/fade-in";
 import { PlaceholderImage } from "@/components/shared/placeholder-image";
@@ -52,6 +52,15 @@ export const HeroSection = () => {
             >
               <Wifi className="h-4 w-4" />
               Connect to WiFi
+            </Button>
+            <Button
+              variant="gold"
+              size="lg"
+              onClick={() => scrollToSection("ev-charging")}
+              aria-label="EV charging — jump to guest charging instructions"
+            >
+              <PlugZap className="h-4 w-4" />
+              EV Charging
             </Button>
             <Button
               variant="outline"

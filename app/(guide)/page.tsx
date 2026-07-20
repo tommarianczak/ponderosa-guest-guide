@@ -1,6 +1,7 @@
 import { AboutSection } from "@/components/sections/about-section";
 import { BeforeYouLeaveSection } from "@/components/sections/before-you-leave-section";
 import { EmergencySection } from "@/components/sections/emergency-section";
+import { EvChargingSection } from "@/components/sections/ev-charging-section";
 import { ExploreSection } from "@/components/sections/explore-section";
 import { FaqSection } from "@/components/sections/faq-section";
 import { FoodDrinkSection } from "@/components/sections/food-drink-section";
@@ -15,6 +16,7 @@ export default function GuestGuidePage() {
     <>
       <HeroSection />
       <QuickInfoSection />
+      <EvChargingSection />
       <AboutSection />
       <HouseGuideSection />
       <ExploreSection />

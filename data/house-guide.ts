@@ -5,6 +5,7 @@ import {
   Flame,
   Microwave,
   Monitor,
+  PlugZap,
   Refrigerator,
   ShowerHead,
   Sofa,
@@ -159,6 +160,27 @@ export const houseGuideGroups: HouseGuideGroup[] = [
         content:
           "Charcoal BBQ on the deck. Please clean after use and dispose of cooled ash in the general waste bin. Do not leave unattended while lit.",
         tips: ["Never use the BBQ indoors"],
+      },
+      {
+        id: "ev-charger",
+        title: "EV charger",
+        icon: PlugZap,
+        content:
+          "There is a Go Zero Optimus EV charger on the driveway. It typically adds about 20–30 miles of range per hour, depending on your car. Charging is pay-as-you-go via the guest link or the QR code by the charger — see the EV Charging section for full step-by-step instructions.",
+        tips: [
+          "Please do not use domestic sockets to charge an EV",
+          "Unplug and tidy the cable when you have finished",
+        ],
+        links: [
+          {
+            label: "Open EV Charging section",
+            href: "#ev-charging",
+          },
+          {
+            label: "Start guest EV charging",
+            href: "https://app.gozerocharge.com/ea4ca927_hh",
+          },
+        ],
       },
     ],
   },

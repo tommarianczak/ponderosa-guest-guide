@@ -44,18 +44,25 @@ export const HouseGuideSection = () => {
                             <p>{item.content}</p>
                             {item.links?.length ? (
                               <ul className="mt-3 space-y-2">
-                                {item.links.map((link) => (
-                                  <li key={link.href}>
-                                    <a
-                                      href={link.href}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="text-sm font-medium text-navy underline-offset-2 hover:underline dark:text-gold"
-                                    >
-                                      {link.label}
-                                    </a>
-                                  </li>
-                                ))}
+                                {item.links.map((link) => {
+                                  const isHashLink = link.href.startsWith("#");
+                                  return (
+                                    <li key={link.href}>
+                                      <a
+                                        href={link.href}
+                                        {...(isHashLink
+                                          ? {}
+                                          : {
+                                              target: "_blank",
+                                              rel: "noopener noreferrer",
+                                            })}
+                                        className="text-sm font-medium text-navy underline-offset-2 hover:underline dark:text-gold"
+                                      >
+                                        {link.label}
+                                      </a>
+                                    </li>
+                                  );
+                                })}
                               </ul>
                             ) : null}
                             {item.tips?.length ? (

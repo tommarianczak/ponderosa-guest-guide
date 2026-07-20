@@ -16,7 +16,19 @@ export const faqs: FaqItem[] = [
     id: "parking",
     question: "Where do I park?",
     answer:
-      "Use the private driveway — space for more than four cars — or on-street parking nearby. Please park considerately.",
+      "Use the private driveway — space for more than four cars — or on-street parking nearby. Please park considerately. An EV charger is on the driveway if you need to charge.",
+  },
+  {
+    id: "ev-charger",
+    question: "How do I use the EV charger?",
+    answer:
+      "Open the Go Zero guest charging link (or scan the QR code by the charger), plug your car in, choose how long to charge, and pay. You are billed at the end for the exact kWh used — no app download required. Expect roughly 20–30 miles of range per hour depending on your vehicle. Please do not charge from a household socket.",
+    links: [
+      {
+        label: "Start guest EV charging",
+        href: "https://app.gozerocharge.com/ea4ca927_hh",
+      },
+    ],
   },
   {
     id: "bins",
