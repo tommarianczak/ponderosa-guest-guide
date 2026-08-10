@@ -1,16 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
-import { navItems } from "@/data/navigation";
+import { useEffect, useId, useRef, useState } from "react";
+import { ChevronDown, Menu, X } from "lucide-react";
+import { navGroups, navItems } from "@/data/navigation";
 import { property } from "@/data/property";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { cn, scrollToSection } from "@/lib/utils";
 
 export const SiteNav = () => {
-  const [open, setOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [openGroupId, setOpenGroupId] = useState<string | null>(null);
   const [activeId, setActiveId] = useState<string>("");
+  const desktopNavRef = useRef<HTMLElement>(null);
+  const menuId = useId();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -32,10 +35,40 @@ export const SiteNav = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!openGroupId) return;
+
+    const handlePointerDown = (event: MouseEvent) => {
+      if (!desktopNavRef.current?.contains(event.target as Node)) {
+        setOpenGroupId(null);
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpenGroupId(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [openGroupId]);
+
   const handleNavClick = (id: string) => {
-    setOpen(false);
+    setMobileOpen(false);
+    setOpenGroupId(null);
     scrollToSection(id);
   };
+
+  const activeGroupId =
+    navGroups.find((group) =>
+      group.items.some((item) => item.id === activeId),
+    )?.id ?? null;
 
   return (
     <header>
@@ -50,24 +83,71 @@ export const SiteNav = () => {
         </button>
 
         <nav
+          ref={desktopNavRef}
           className="hidden items-center gap-1 lg:flex"
           aria-label="Main navigation"
         >
-          {navItems.map(({ id, label }) => (
-            <button
-              key={id}
-              type="button"
-              onClick={() => handleNavClick(id)}
-              className={cn(
-                "rounded-md px-3 py-2 text-xs font-medium tracking-wide transition-colors",
-                activeId === id
-                  ? "text-navy dark:text-gold"
-                  : "text-muted-foreground hover:text-navy dark:hover:text-warm-white",
-              )}
-            >
-              {label}
-            </button>
-          ))}
+          {navGroups.map((group) => {
+            const isOpen = openGroupId === group.id;
+            const isActiveGroup = activeGroupId === group.id;
+            const panelId = `${menuId}-${group.id}`;
+
+            return (
+              <div key={group.id} className="relative">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setOpenGroupId((current) =>
+                      current === group.id ? null : group.id,
+                    )
+                  }
+                  aria-expanded={isOpen}
+                  aria-controls={panelId}
+                  className={cn(
+                    "inline-flex items-center gap-1 rounded-md px-3 py-2 text-xs font-medium tracking-wide transition-colors",
+                    isActiveGroup || isOpen
+                      ? "text-navy dark:text-gold"
+                      : "text-muted-foreground hover:text-navy dark:hover:text-warm-white",
+                  )}
+                >
+                  {group.label}
+                  <ChevronDown
+                    className={cn(
+                      "h-3.5 w-3.5 transition-transform",
+                      isOpen && "rotate-180",
+                    )}
+                    aria-hidden="true"
+                  />
+                </button>
+
+                {isOpen ? (
+                  <div
+                    id={panelId}
+                    role="menu"
+                    aria-label={group.label}
+                    className="absolute left-0 top-full z-50 mt-2 min-w-[12rem] rounded-xl border border-border/80 bg-background p-1.5 shadow-lg"
+                  >
+                    {group.items.map((item) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        role="menuitem"
+                        onClick={() => handleNavClick(item.id)}
+                        className={cn(
+                          "flex w-full rounded-lg px-3 py-2.5 text-left text-sm transition-colors",
+                          activeId === item.id
+                            ? "bg-muted text-navy dark:text-gold"
+                            : "text-muted-foreground hover:bg-muted/70 hover:text-navy dark:hover:text-warm-white",
+                        )}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            );
+          })}
           <ThemeToggle />
         </nav>
 
@@ -76,38 +156,51 @@ export const SiteNav = () => {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setOpen((prev) => !prev)}
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
+            onClick={() => setMobileOpen((prev) => !prev)}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
           >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
           </Button>
         </div>
       </div>
 
-      {open ? (
+      {mobileOpen ? (
         <nav
           className="border-t border-border bg-background px-4 py-4 lg:hidden"
           aria-label="Mobile navigation"
         >
-          <ul className="grid gap-1">
-            {navItems.map(({ id, label }) => (
-              <li key={id}>
-                <button
-                  type="button"
-                  onClick={() => handleNavClick(id)}
-                  className={cn(
-                    "w-full rounded-lg px-4 py-3 text-left text-sm font-medium transition-colors",
-                    activeId === id
-                      ? "bg-muted text-navy dark:text-gold"
-                      : "text-muted-foreground hover:bg-muted/60",
-                  )}
-                >
-                  {label}
-                </button>
-              </li>
+          <div className="grid gap-5">
+            {navGroups.map((group) => (
+              <div key={group.id}>
+                <p className="px-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                  {group.label}
+                </p>
+                <ul className="mt-2 grid gap-1">
+                  {group.items.map((item) => (
+                    <li key={item.id}>
+                      <button
+                        type="button"
+                        onClick={() => handleNavClick(item.id)}
+                        className={cn(
+                          "w-full rounded-lg px-4 py-3 text-left text-sm font-medium transition-colors",
+                          activeId === item.id
+                            ? "bg-muted text-navy dark:text-gold"
+                            : "text-muted-foreground hover:bg-muted/60",
+                        )}
+                      >
+                        {item.label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
         </nav>
       ) : null}
     </header>

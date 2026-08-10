@@ -3,6 +3,7 @@ import { BeforeYouLeaveSection } from "@/components/sections/before-you-leave-se
 import { EmergencySection } from "@/components/sections/emergency-section";
 import { EvChargingSection } from "@/components/sections/ev-charging-section";
 import { ExploreSection } from "@/components/sections/explore-section";
+import { BeachesSection } from "@/components/sections/beaches-section";
 import { FaqSection } from "@/components/sections/faq-section";
 import { FoodDrinkSection } from "@/components/sections/food-drink-section";
 import { HeroSection } from "@/components/sections/hero-section";
@@ -20,6 +21,7 @@ export default function GuestGuidePage() {
       <AboutSection />
       <HouseGuideSection />
       <ExploreSection />
+      <BeachesSection />
       <FoodDrinkSection />
       <AmenitiesSection />
       <FaqSection />

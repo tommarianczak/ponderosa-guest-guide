@@ -158,6 +158,64 @@ export const amenities: Amenity[] = [
 
   {
 
+    id: "ilfracombe-coop",
+
+    name: "Co-op Food",
+
+    categories: ["convenience", "late-night"],
+
+    description:
+
+      "High Street Co-op — groceries, fresh produce, household essentials, and Co-op own-brand products.",
+
+    tip: "Open late every day including Sunday evening — useful when Tesco and Lidl have already closed.",
+
+    address: "69 High Street, EX34 9QE",
+
+    distance: "0.9 miles (~5 min drive into town)",
+
+    openingHours: "Daily 7:00 am – 10:00 pm (including Sunday)",
+
+    phone: "01271 862315",
+
+    mapsUrl:
+
+      "https://www.google.com/maps/search/?api=1&query=Co-op+Food+69+High+Street+Ilfracombe+EX34+9QE",
+
+    websiteUrl: "https://www.coop.co.uk/store-finder/ex34-9qe/69-high-street",
+
+  },
+
+  {
+
+    id: "jacks-dairy",
+
+    name: "Jack's Dairy",
+
+    categories: ["convenience", "late-night"],
+
+    description:
+
+      "Local convenience store on Wilder Road — groceries, milk, bread, snacks, and everyday essentials.",
+
+    tip: "Open late every day including Sundays — handy 5-minute drive for essentials when the big shops are shut.",
+
+    address: "17 Wilder Road, EX34 8BN",
+
+    distance: "Approximately 5 min drive",
+
+    openingHours: "Mon–Sat 8:00 am – 10:00 pm · Sun 10:00 am – 10:00 pm",
+
+    phone: "01271 862674",
+
+    mapsUrl:
+
+      "https://www.google.com/maps/search/?api=1&query=Jack's+Dairy+17+Wilder+Road+Ilfracombe+EX34+8BN",
+
+  },
+
+  {
+
     id: "nisa-local",
 
     name: "Nisa Local",

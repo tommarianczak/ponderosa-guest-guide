@@ -21,12 +21,13 @@ export const exploreCards: ExploreCard[] = [
     image: "/images/explore-beaches.jpg",
     imageAlt: "North Devon beach",
     highlights: [
-      { label: "Tunnels Beach", href: "https://www.tunnelsbeaches.co.uk/" },
-      { label: "Woolacombe", href: "https://www.woolacombetourism.co.uk/" },
-      {
-        label: "Croyde Bay",
-        href: "https://www.nationaltrust.org.uk/visit/devon/croyde-bay",
-      },
+      { label: "Tunnels Beaches", href: "#beaches" },
+      { label: "Harbour Beach", href: "#beaches" },
+      { label: "Hele Bay", href: "#beaches" },
+      { label: "Lee Beach", href: "#beaches" },
+      { label: "Woolacombe", href: "#beaches" },
+      { label: "Croyde", href: "#beaches" },
+      { label: "Saunton", href: "#beaches" },
     ],
   },
   {
