@@ -193,8 +193,7 @@ export const houseGuideGroups: HouseGuideGroup[] = [
         title: "Waste",
         icon: Trash2,
         content:
-          "General waste goes in the black bin outside, stored behind the end of the house. Black bin collection is every second Friday — please check your dates before putting the bin out.",
-        tips: ["Put the black bin out by 6:00 am on collection morning"],
+          "General waste goes in the black bin outside, stored behind the end of the house.",
         links: [
           {
             label: "North Devon Council bin collection calendar",

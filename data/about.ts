@@ -25,7 +25,7 @@ export const aboutBlocks: AboutBlock[] = [
     id: "location",
     title: "The peaceful location",
     description:
-      "Set on Worth Road above the harbour, Ponderosa offers tranquillity without isolation. Ilfracombe's restaurants, harbour walks, and beaches are minutes away — yet the house feels a world apart.",
+      "Set on Worth Road above the harbour, Ponderosa offers tranquillity without isolation. The meadow behind once held Ilfracombe Castle — Ilfracombe's restaurants, harbour walks, and beaches are minutes away, yet the house feels a world apart.",
     imageAlt: "Peaceful location near Ilfracombe",
   },
   {

@@ -1,7 +1,9 @@
+import Link from "next/link";
 import { aboutBlocks } from "@/data/about";
 import { FadeIn } from "@/components/shared/fade-in";
 import { PlaceholderImage } from "@/components/shared/placeholder-image";
 import { SectionHeading } from "@/components/shared/section-heading";
+import { Button } from "@/components/ui/button";
 
 export const AboutSection = () => {
   return (
@@ -49,6 +51,27 @@ export const AboutSection = () => {
             );
           })}
         </div>
+
+        <FadeIn delay={0.1}>
+          <div className="mt-16 rounded-2xl border border-border/80 bg-muted/40 px-6 py-8 text-center sm:px-10">
+            <h3 className="font-serif text-2xl font-light text-navy dark:text-warm-white">
+              More of the story
+            </h3>
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              The meadow behind Ponderosa once held Ilfracombe Castle — and the
+              house you stay in today has its own chapter of careful design and
+              craft.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <Button variant="default" size="sm" asChild>
+                <Link href="/history">History of the site</Link>
+              </Button>
+              <Button variant="outline" size="sm" asChild>
+                <Link href="/works">Creating Ponderosa</Link>
+              </Button>
+            </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

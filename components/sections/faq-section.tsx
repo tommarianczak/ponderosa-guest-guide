@@ -1,4 +1,5 @@
 import { faqs } from "@/data/faqs";
+import { BinCollectionGuide } from "@/components/shared/bin-collection-guide";
 import { FadeIn } from "@/components/shared/fade-in";
 import { SectionHeading } from "@/components/shared/section-heading";
 import {
@@ -30,7 +31,11 @@ export const FaqSection = () => {
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="leading-relaxed">
-                  <p>{faq.answer}</p>
+                  {faq.id === "bins" ? (
+                    <BinCollectionGuide />
+                  ) : (
+                    <p>{faq.answer}</p>
+                  )}
                   {faq.links?.length ? (
                     <ul className="mt-3 space-y-2">
                       {faq.links.map((link) => (

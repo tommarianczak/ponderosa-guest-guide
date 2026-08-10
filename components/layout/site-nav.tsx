@@ -1,21 +1,32 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { navGroups, navItems } from "@/data/navigation";
+import { navGroups, navItems, type NavItem } from "@/data/navigation";
 import { property } from "@/data/property";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { cn, scrollToSection } from "@/lib/utils";
 
 export const SiteNav = () => {
+  const pathname = usePathname();
+  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openGroupId, setOpenGroupId] = useState<string | null>(null);
   const [activeId, setActiveId] = useState<string>("");
   const desktopNavRef = useRef<HTMLElement>(null);
   const menuId = useId();
+  const isHome = pathname === "/";
 
   useEffect(() => {
+    if (!isHome) {
+      const pageItem = navItems.find((item) => item.href === pathname);
+      setActiveId(pageItem?.id ?? "");
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -27,13 +38,14 @@ export const SiteNav = () => {
       { rootMargin: "-40% 0px -50% 0px", threshold: 0 },
     );
 
-    navItems.forEach(({ id }) => {
+    navItems.forEach(({ id, href }) => {
+      if (href) return;
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [isHome, pathname]);
 
   useEffect(() => {
     if (!openGroupId) return;
@@ -59,10 +71,34 @@ export const SiteNav = () => {
     };
   }, [openGroupId]);
 
-  const handleNavClick = (id: string) => {
+  const closeMenus = () => {
     setMobileOpen(false);
     setOpenGroupId(null);
-    scrollToSection(id);
+  };
+
+  const handleHomeClick = () => {
+    closeMenus();
+    if (isHome) {
+      scrollToSection("hero");
+      return;
+    }
+    router.push("/");
+  };
+
+  const handleNavClick = (item: NavItem) => {
+    closeMenus();
+
+    if (item.href) {
+      router.push(item.href);
+      return;
+    }
+
+    if (isHome) {
+      scrollToSection(item.id);
+      return;
+    }
+
+    router.push(`/#${item.id}`);
   };
 
   const activeGroupId =
@@ -75,7 +111,7 @@ export const SiteNav = () => {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <button
           type="button"
-          onClick={() => scrollToSection("hero")}
+          onClick={handleHomeClick}
           className="font-serif text-lg tracking-[0.15em] text-navy dark:text-warm-white"
           aria-label={`${property.name} — back to top`}
         >
@@ -132,7 +168,7 @@ export const SiteNav = () => {
                         key={item.id}
                         type="button"
                         role="menuitem"
-                        onClick={() => handleNavClick(item.id)}
+                        onClick={() => handleNavClick(item)}
                         className={cn(
                           "flex w-full rounded-lg px-3 py-2.5 text-left text-sm transition-colors",
                           activeId === item.id
@@ -183,18 +219,33 @@ export const SiteNav = () => {
                 <ul className="mt-2 grid gap-1">
                   {group.items.map((item) => (
                     <li key={item.id}>
-                      <button
-                        type="button"
-                        onClick={() => handleNavClick(item.id)}
-                        className={cn(
-                          "w-full rounded-lg px-4 py-3 text-left text-sm font-medium transition-colors",
-                          activeId === item.id
-                            ? "bg-muted text-navy dark:text-gold"
-                            : "text-muted-foreground hover:bg-muted/60",
-                        )}
-                      >
-                        {item.label}
-                      </button>
+                      {item.href ? (
+                        <Link
+                          href={item.href}
+                          onClick={closeMenus}
+                          className={cn(
+                            "block w-full rounded-lg px-4 py-3 text-left text-sm font-medium transition-colors",
+                            activeId === item.id
+                              ? "bg-muted text-navy dark:text-gold"
+                              : "text-muted-foreground hover:bg-muted/60",
+                          )}
+                        >
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => handleNavClick(item)}
+                          className={cn(
+                            "w-full rounded-lg px-4 py-3 text-left text-sm font-medium transition-colors",
+                            activeId === item.id
+                              ? "bg-muted text-navy dark:text-gold"
+                              : "text-muted-foreground hover:bg-muted/60",
+                          )}
+                        >
+                          {item.label}
+                        </button>
+                      )}
                     </li>
                   ))}
                 </ul>

@@ -1,4 +1,5 @@
 import { houseGuideGroups } from "@/data/house-guide";
+import { BinCollectionGuide } from "@/components/shared/bin-collection-guide";
 import { FadeIn } from "@/components/shared/fade-in";
 import { SectionHeading } from "@/components/shared/section-heading";
 import {
@@ -32,6 +33,8 @@ export const HouseGuideSection = () => {
                   <Accordion type="multiple" className="w-full">
                     {group.items.map((item) => {
                       const Icon = item.icon;
+                      const isWaste = item.id === "waste";
+
                       return (
                         <AccordionItem key={item.id} value={item.id}>
                           <AccordionTrigger className="gap-3 text-sm">
@@ -41,7 +44,11 @@ export const HouseGuideSection = () => {
                             </span>
                           </AccordionTrigger>
                           <AccordionContent>
-                            <p>{item.content}</p>
+                            {isWaste ? (
+                              <BinCollectionGuide />
+                            ) : (
+                              <p>{item.content}</p>
+                            )}
                             {item.links?.length ? (
                               <ul className="mt-3 space-y-2">
                                 {item.links.map((link) => {
@@ -65,7 +72,7 @@ export const HouseGuideSection = () => {
                                 })}
                               </ul>
                             ) : null}
-                            {item.tips?.length ? (
+                            {!isWaste && item.tips?.length ? (
                               <ul className="mt-3 list-disc space-y-1 pl-5">
                                 {item.tips.map((tip) => (
                                   <li key={tip}>{tip}</li>

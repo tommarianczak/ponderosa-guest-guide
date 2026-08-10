@@ -11,10 +11,12 @@ import { HouseGuideSection } from "@/components/sections/house-guide-section";
 import { AmenitiesSection } from "@/components/sections/amenities-section";
 import { QuickInfoSection } from "@/components/sections/quick-info-section";
 import { WeatherSection } from "@/components/sections/weather-section";
+import { HashScroll } from "@/components/shared/hash-scroll";
 
 export default function GuestGuidePage() {
   return (
     <>
+      <HashScroll />
       <HeroSection />
       <QuickInfoSection />
       <EvChargingSection />

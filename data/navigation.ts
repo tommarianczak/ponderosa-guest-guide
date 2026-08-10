@@ -1,6 +1,8 @@
 export type NavItem = {
   id: string;
   label: string;
+  /** Page route — if set, navigates instead of scrolling to a section id. */
+  href?: string;
 };
 
 export type NavGroup = {
@@ -17,6 +19,8 @@ export const navGroups: NavGroup[] = [
       { id: "quick-info", label: "Essentials" },
       { id: "ev-charging", label: "EV Charging" },
       { id: "about", label: "About" },
+      { id: "history", label: "History", href: "/history" },
+      { id: "works", label: "The works", href: "/works" },
       { id: "house-guide", label: "House Guide" },
     ],
   },

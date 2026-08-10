@@ -34,7 +34,7 @@ export const faqs: FaqItem[] = [
     id: "bins",
     question: "Where are the bins?",
     answer:
-      "General waste goes in the black bin outside, stored behind the end of the house. Black bin collection is every second Friday — check your collection dates using the link below. Put the bin out by 6:00 am on collection morning.",
+      "General waste goes in the black bin outside, stored behind the end of the house.",
     links: [
       {
         label: "North Devon Council bin collection calendar",
